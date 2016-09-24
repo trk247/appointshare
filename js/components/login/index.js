@@ -1,0 +1,168 @@
+'use strict';
+
+import React, { Component } from 'react';
+import { Image, Platform, AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
+import { pushNewRoute, replaceRoute } from '../../actions/route';
+import { Container, Content, Text, InputGroup, Input, Button, Icon, View } from 'native-base';
+import login from './login-theme';
+import styles from './styles';
+
+class Login extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            scroll: false,
+            email: '',
+            password: '',
+            result: ''
+        };
+    }
+
+    signIn() {
+      
+      let {email, password} = this.state;
+      let errors = '';
+
+      if (email == '') {
+        errors = "Please enter in a valid email.\n";
+      }
+
+      if (password == '') {
+        errors += "Please enter in a valid password."
+      }
+      if (errors != '') {
+        this.setState({result: errors});
+      } else {
+
+        fetch('http://www.appointshare.com/login.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password
+          })
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+          if (responseData == 'login success') {
+            
+            // get session from server
+            try {
+              AsyncStorage.setItem('@Session:key', 'I like to save it.');
+              }  catch (error) {
+                console.log(error);// Error saving data
+              }
+            
+              try {
+                const value = AsyncStorage.getItem('@Session:key');
+                if (value !== null){
+                  console.log(value);
+                }
+              } catch (error) {
+                  // Error retrieving data
+                  console.log(error);
+              }
+            
+              this.replaceRoute('home');
+            
+          } else {
+            this.setState({result: 'Email or Password is incorrect'});
+          }
+        })
+        .catch((error) => {
+          console.warn(error);
+        })
+        .done();
+      }
+
+    }
+    
+    replaceRoute(route) {
+        this.props.replaceRoute(route);
+    }
+
+    pushNewRoute(route) {
+         this.props.pushNewRoute(route);
+    }
+
+    render() {
+      // <Button rounded block style={{marginBottom: 20}} 
+      // onPress={() => this.signIn()}
+      // onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
+      // >
+      // var names = ['Jake', 'Jon', 'Thruster'];
+      // return (
+      //     <ul>
+      //         {names.map(function(name, index) {
+      //             return <li key={ index }>{name}</li>;
+      //           })}
+      //     </ul>
+      // )
+// source={require('../../../images/ach.png')} 
+        return (
+            <Container>
+                <Content style={{backgroundColor: '#fff'}} theme={login} scrollEnabled={this.state.scroll}>
+                    <Image source={require('../../../images/glow2.png')} style={styles.container}>
+                        <Image style={styles.shadow} source={require('../../../images/logo.png')} >
+                            <View style={styles.bg}>
+                            <Text style={styles.feedback}>{this.state.result}</Text>
+                                <View style={{marginBottom: 20}}>
+                                    <InputGroup >
+                                        <Icon name='ios-person' />
+                                        <Input
+                                            placeholder='EMAIL'
+                                            onChangeText={(email) => this.setState({email})}
+                                        />
+                                    </InputGroup>
+                                </View>
+
+                                <View style={{marginBottom: 30}}>
+                                    <InputGroup >
+                                        <Icon name='ios-unlock-outline' />
+                                        <Input
+                                            placeholder='PASSWORD'
+                                            secureTextEntry={true}
+                                            onChangeText={(password) => this.setState({password})}
+                                        />
+                                    </InputGroup>
+                                </View>
+
+                                <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 5 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}>
+                                    <Text>
+                                        Forgot Password
+                                    </Text>
+                                </Button>
+                                
+                                <Button rounded block style={{marginBottom: 20}} 
+                                onPress={() => this.signIn()}
+                                >
+                                    Login
+                                </Button>
+                                <Button transparent style={{alignSelf: 'center'}} onPress={() => this.pushNewRoute('signUp')}>
+                                    <Text>
+                                        Sign Up Here
+                                    </Text>
+                                </Button>
+                            </View>
+                        </Image>
+                    </Image>
+                </Content>
+            </Container>
+        )
+    }
+}
+
+
+function bindActions(dispatch){
+    return {
+        replaceRoute:(route)=>dispatch(replaceRoute(route)),
+        pushNewRoute:(route)=>dispatch(pushNewRoute(route))
+    }
+}
+
+export default connect(null, bindActions)(Login);
