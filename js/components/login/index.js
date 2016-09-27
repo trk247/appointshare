@@ -159,6 +159,7 @@ class Login extends Component {
                                 
                                 <Button rounded block style={{marginBottom: 20}} 
                                 onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
+                                // onPress={() => this.signIn()}
                                 >
                                     Login
                                 </Button>
