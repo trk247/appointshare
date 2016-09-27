@@ -4,9 +4,12 @@ import React, { Component } from 'react';
 import { Image, Platform, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { pushNewRoute, replaceRoute } from '../../actions/route';
-import { Container, Content, Text, InputGroup, Input, Button, Icon, View } from 'native-base';
+import { Container, Content, Text, TextInput, InputGroup, Input, Button, List, Icon, View, ListItem } from 'native-base';
+  
 import login from './login-theme';
 import styles from './styles';
+
+var ItemCheckbox = require('react-native-item-checkbox');
 
 class Login extends Component {
 
@@ -16,7 +19,8 @@ class Login extends Component {
             scroll: false,
             email: '',
             password: '',
-            result: ''
+            result: '',
+            checked: true
         };
     }
 
@@ -90,6 +94,10 @@ class Login extends Component {
          this.props.pushNewRoute(route);
     }
 
+    // _onCheckCallback() {
+    //   this.setState({checked:true})
+    // }
+
     render() {
       // <Button rounded block style={{marginBottom: 20}} 
       // onPress={() => this.signIn()}
@@ -121,7 +129,7 @@ class Login extends Component {
                                     </InputGroup>
                                 </View>
 
-                                <View style={{marginBottom: 30}}>
+                                <View style={{marginBottom: 10}}>
                                     <InputGroup >
                                         <Icon name='ios-unlock-outline' />
                                         <Input
@@ -132,6 +140,17 @@ class Login extends Component {
                                     </InputGroup>
                                 </View>
 
+                                <View style={styles.checkBoxStyle}>
+                                  <ItemCheckbox // https://www.npmjs.com/package/react-native-item-checkbox
+                                    color="#0097d6"
+                                    checked={true}
+                                    size={20}
+                                    label="Remember Me"
+                                    onChange={(checked) => this.setState({checked})}
+                                  />
+                                  <Text>Remember Me</Text>
+                                </View>
+                                
                                 <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 5 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}>
                                     <Text>
                                         Forgot Password
@@ -139,11 +158,12 @@ class Login extends Component {
                                 </Button>
                                 
                                 <Button rounded block style={{marginBottom: 20}} 
-                                onPress={() => this.signIn()}
+                                onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
                                 >
                                     Login
                                 </Button>
-                                <Button transparent style={{alignSelf: 'center'}} onPress={() => this.pushNewRoute('signUp')}>
+                                <Button transparent style={{alignSelf: 'center'}} 
+                                onPress={() => this.pushNewRoute('signUp')}>
                                     <Text>
                                         Sign Up Here
                                     </Text>
