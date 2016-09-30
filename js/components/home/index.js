@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 import { openDrawer } from '../../actions/drawer';
@@ -33,6 +33,13 @@ class Home extends Component {
     }
 
     render() {
+      
+  
+        AsyncStorage.getItem("@uid:key").then((value) => {
+          console.log(value);
+        }).done();
+        
+      
         return (
             <Container theme={theme} style={{backgroundColor: '#384850'}}>
                 <Image source={require('../../../images/glow2.png')} style={styles.container} >

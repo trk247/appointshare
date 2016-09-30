@@ -30,15 +30,19 @@ class SideBar extends Component {
                     </ListItem>
                     <ListItem button onPress={() => this.navigateTo('appointments')} iconLeft style={styles.links} >
                         <Icon name='ios-calendar-outline' />
-                        <Text>Appointments</Text>
+                        <Text>Upcoming Appointments</Text>
                     </ListItem>
 
                     <ListItem button onPress={() => this.navigateTo('favoriteDoctors')} iconLeft style={styles.links} >
                         <Icon name='ios-medkit' />
-                        <Text >Favorite Doctors</Text>
+                        <Text >Appointments</Text>
                     </ListItem>
                     
-                    
+                    <ListItem button onPress={() => this.navigateTo('contact')} iconLeft style={styles.links} >
+                        <Icon name='ios-paper-outline' />
+                        <Text >Contact</Text>
+                    </ListItem>  
+                                        
                     <ListItem button onPress={() => this.navigateTo('settings')} iconLeft style={styles.links} >
                         <Icon name='ios-settings' />
                         <Text >Settings</Text>

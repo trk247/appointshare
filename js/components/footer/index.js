@@ -31,12 +31,12 @@ class Footer extends Component {
 			<View style={styles.footer}>
 			
 				
-				<TouchableOpacity onPress={() => this.navigateTo('home')}>
+				<TouchableOpacity onPress={() => this.navigateTo('overview')}>
 					{overviewIcon}
 					<Text style={styles.iconText}>Overview</Text>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={() => this.navigateTo('home')}>
+				<TouchableOpacity onPress={() => this.navigateTo('news')}>
 					{newsIcon}
 					<Text style={styles.iconText}>News</Text>
 				</TouchableOpacity>
@@ -46,12 +46,12 @@ class Footer extends Component {
 					<Text style={styles.iconText}>Calendar</Text>
 				</TouchableOpacity>
 			
-				<TouchableOpacity onPress={() => this.navigateTo('home')}>
+				<TouchableOpacity onPress={() => this.navigateTo('groups')}>
 					{groupIcon}
 					<Text style={styles.iconText}>Groups</Text>
 				</TouchableOpacity>
 			
-				<TouchableOpacity onPress={() => this.navigateTo('home')}>
+				<TouchableOpacity onPress={() => this.navigateTo('messages')}>
 					{alertIcon}
 					<Text style={styles.iconText}>Messages</Text>
 				</TouchableOpacity>
@@ -64,7 +64,7 @@ class Footer extends Component {
 function bindAction(dispatch) {
     return {
     	closeDrawer: ()=>dispatch(closeDrawer()),
-        replaceOrPushRoute:(route)=>dispatch(replaceOrPushRoute(route))
+      replaceOrPushRoute:(route)=>dispatch(replaceOrPushRoute(route))
     }
 }
 

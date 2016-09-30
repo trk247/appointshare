@@ -16,7 +16,7 @@ module.exports = {
 
     subtitleColor: '#8e8e93',
 
-    inverseTextColor: "#000",
+    inverseTextColor: "#fff",
     textColor: "#fff",
 
     fontSizeBase: 15,

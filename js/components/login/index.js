@@ -23,7 +23,10 @@ class Login extends Component {
             checked: true
         };
     }
-
+    // componentdidmount - check if result was checked or not
+    
+    
+    
     signIn() {
       
       let {email, password} = this.state;
@@ -53,24 +56,19 @@ class Login extends Component {
         })
         .then((response) => response.json())
         .then((responseData) => {
-          if (responseData == 'login success') {
+          
+          // console.log(responseData);
+        
+          if (responseData[0].status == 'success') {
             
             // get session from server
             try {
-              AsyncStorage.setItem('@Session:key', 'I like to save it.');
+              AsyncStorage.setItem('@uid:key', responseData[0].id);
               }  catch (error) {
                 console.log(error);// Error saving data
               }
-            
-              try {
-                const value = AsyncStorage.getItem('@Session:key');
-                if (value !== null){
-                  console.log(value);
-                }
-              } catch (error) {
-                  // Error retrieving data
-                  console.log(error);
-              }
+
+      
             
               this.replaceRoute('home');
             
@@ -151,15 +149,16 @@ class Login extends Component {
                                   <Text>Remember Me</Text>
                                 </View>
                                 
-                                <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 5 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}>
+                                <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 5 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}
+                                onPress={() => this.pushNewRoute('forgotPassword')}>
                                     <Text>
                                         Forgot Password
                                     </Text>
                                 </Button>
                                 
                                 <Button rounded block style={{marginBottom: 20}} 
-                                onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
-                                // onPress={() => this.signIn()}
+                                // onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
+                                onPress={() => this.signIn()}
                                 >
                                     Login
                                 </Button>

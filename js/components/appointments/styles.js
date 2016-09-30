@@ -43,5 +43,14 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
-    }
+    },
+    feedback: {
+      textAlign: 'left',
+      color: '#fff',
+      fontWeight: 'bold',
+      padding: 20,
+      textAlign: 'center',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
 });

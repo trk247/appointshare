@@ -28,7 +28,8 @@ class Appointments extends Component {
           location: '',
           status: '',
           birthDate: '',
-          patient_number: ''
+          patient_number: '',
+          results: ''
           
         }
         ]),
@@ -49,17 +50,19 @@ class Appointments extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-
+          type: 'upcoming'
         })
       })
       .then((response) => response.json())
       .then((responseData) => {
-        
-        
+        // console.log(responseData);
+        if (responseData == 'zero') {
+          this.setState({result: 'You have no upcoming appointments.'})
+        } else {
             this.setState({
               dataSource: ds.cloneWithRows(responseData),
             });
-        // console.log(responseData);
+        }
           
       })
     }
@@ -73,7 +76,11 @@ class Appointments extends Component {
       // const appt = this.getAppointments();
     }
       renderRow(rowData) {
-        // console.log(rowData);
+        // console.log(rowData.patient_name);
+        if (typeof rowData.patient_name === "undefined") {
+          return(<Text></Text>);
+        }
+        
         return (
           <Card transparent foregroundColor='#fff' style={styles.card}>
               <CardItem style={styles.cardHeader}  header>
@@ -100,6 +107,9 @@ class Appointments extends Component {
       
         
         )
+      
+      
+      
       }
     render() {
         
@@ -120,10 +130,11 @@ class Appointments extends Component {
                   </Header>
 
                   <Content style={{backgroundColor: 'transparent'}}>
-                  
+                  <Text style={styles.feedback}>{this.state.result}</Text>
                   <ListView 
+                  initialListSize={0}
           contentInset={{top: 0}}
-          automaticallyAdjustContentInsets={false}
+          automaticallyAdjustContentInsets={true}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => this.renderRow(rowData)} 
           

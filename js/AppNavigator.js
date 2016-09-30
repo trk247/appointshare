@@ -17,6 +17,11 @@ import FavoriteDoctors from './components/favoriteDoctors/';
 import PreviousAppointments from './components/previousAppointments/';
 
 import Login from './components/login/';
+import ForgotPassword from './components/forgotPassword/';
+import News from './components/news/';
+import Messages from './components/messages/';
+import Groups from './components/groups/';
+import Overview from './components/overview/';
 import Logout from './components/logout/';
 import SplashPage from './components/splashscreen/';
 import Home from './components/home/';
@@ -154,7 +159,7 @@ class AppNavigator extends Component {
     }
 
     renderScene(route, navigator) {
-      // alert(route.id);
+      //  alert(route.id);
         switch (route.id) {
             case 'splashscreen':
                 return <SplashPage navigator={navigator} />;
@@ -178,7 +183,7 @@ class AppNavigator extends Component {
                 return <ProgressBar navigator={navigator} />;
             case 'spinners':
                 return <Spinner navigator={navigator} />;
-            case 'contacts':
+            case 'contact':
                 return <Contacts navigator={navigator} />;
             case 'calendar':
                 return <Calendar navigator={navigator} />;
@@ -195,9 +200,19 @@ class AppNavigator extends Component {
             case 'favoriteDoctors':
                 return <FavoriteDoctors navigator={navigator} />;
             case 'logout':
-                return <Logout navigator={navigator} />;                
+                return <Logout navigator={navigator} />;   
+            case 'news':
+                  return <News navigator={navigator} />;   
+            case 'overview':
+                return <Overview navigator={navigator} />;  
+            case 'groups':
+                return <Groups navigator={navigator} />;  
+            case 'messages':
+                return <Messages navigator={navigator} />;     
+            case 'forgotPassword':
+                return <ForgotPassword navigator={navigator} />;                                                       
             default :
-                return <Logout navigator={navigator} />;
+                return <Login navigator={navigator} />;
         }
     }
 }
