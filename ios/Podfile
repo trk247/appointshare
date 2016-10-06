@@ -1,0 +1,4 @@
+target "AppointShare" do
+     pod 'OneSignal', '~> 1.13.3'
+     project '/Users/TR/react/appointshare/ios/appointshare.xcodeproj'
+end

@@ -1,0 +1,3 @@
+target "AppointShare" do
+     pod 'OneSignal', '~> 1.13.3'
+end

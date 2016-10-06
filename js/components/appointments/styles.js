@@ -5,47 +5,46 @@ var React = require('react-native');
 var { StyleSheet } = React;
 
 module.exports = StyleSheet.create({
-    container: {
+    appt_container: {
         width: null,
         height: null,
         flex: 1
     },
-    card: {
+    appt_card: {
         borderWidth: 0
     },
-    cardHeader: {
-        backgroundColor: 'transparent',
+    appt_cardHeader: {
+        // backgroundColor: 'transparent',
         borderBottomWidth: 0,
         paddingBottom: 10,
         height: 65,
         flex:10,
         flexDirection: 'row'
     },
-    cardItem: {
-        backgroundColor: 'transparent',
+    appt_cardItem: {
+        // backgroundColor: 'transparent',
         paddingTop: 5,
         paddingLeft: 55
     },
-    date: {
+    appt_date: {
         textAlign: 'right',
         fontSize: 13,
         fontWeight: '400',
         color: '#ddd',
         width: 70
     },   
-    item: {
+    appt_item: {
       justifyContent: 'center',
       flexDirection: 'row',
       flexWrap: 'wrap'
       
     },
-    list: {
+    appt_list: {
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
-    feedback: {
-      textAlign: 'left',
+    appt_feedback: {
       color: '#fff',
       fontWeight: 'bold',
       padding: 20,

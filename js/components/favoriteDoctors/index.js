@@ -104,10 +104,10 @@ class Appointments extends Component {
         )
       }
     render() {
-        
-
+        // <Container theme={theme} style={{backgroundColor: '#384850'}}>
+// <Content style={{backgroundColor: 'transparent'}}>
         return (
-          <Container theme={theme} style={{backgroundColor: '#384850'}}>
+          <Container theme={theme}>
               <Image source={require('../../../images/glow2.png')} style={styles.container} >
                   <Header>
                       <Button transparent onPress={() => this.popRoute()}>
@@ -121,7 +121,7 @@ class Appointments extends Component {
                       </Button>
                   </Header>
 
-                  <Content style={{backgroundColor: 'transparent'}}>
+                  <Content>
                   
                   <ListView 
           contentInset={{top: 0}}

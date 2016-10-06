@@ -82,15 +82,15 @@ class Appointments extends Component {
         }
         
         return (
-          <Card transparent foregroundColor='#fff' style={styles.card}>
+          <Card transparent foregroundColor='#fff' style={styles.appt_card}>
               <CardItem style={styles.cardHeader}  header>
                   <Thumbnail source={require('../../../images/ach.png')} />
                   <Text>{rowData.patient_name}</Text>
                   
-                  <Text style={styles.date}>Appointment Time: {rowData.time}</Text>
+                  <Text style={styles.appt_date}>Appointment Time: {rowData.time}</Text>
               </CardItem>
 
-              <CardItem style={styles.cardItem} >
+              <CardItem style={styles.appt_cardItem} >
               <Text style={styles.item}>Date: {rowData.date}</Text>
               <Text style={styles.item}>Time: {rowData.time}</Text>
               <Text style={styles.item}>Location: {rowData.location}</Text>
@@ -112,11 +112,12 @@ class Appointments extends Component {
       
       }
     render() {
-        
-
+        // <Container theme={theme} style={{backgroundColor: '#384850'}}>
+// <Content style={{backgroundColor: 'transparent'}}>
         return (
-          <Container theme={theme} style={{backgroundColor: '#384850'}}>
-              <Image source={require('../../../images/glow2.png')} style={styles.container} >
+          
+          <Container theme={theme} >
+              <Image source={require('../../../images/glow2.png')} style={styles.appt_container} >
                   <Header>
                       <Button transparent onPress={() => this.popRoute()}>
                           <Icon name='ios-arrow-back' style={{fontSize: 30, lineHeight: 32}} />
@@ -129,8 +130,9 @@ class Appointments extends Component {
                       </Button>
                   </Header>
 
-                  <Content style={{backgroundColor: 'transparent'}}>
-                  <Text style={styles.feedback}>{this.state.result}</Text>
+                  
+                  <Content>
+                  <Text style={styles.appt_feedback}>{this.state.result}</Text>
                   <ListView 
                   initialListSize={0}
           contentInset={{top: 0}}

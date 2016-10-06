@@ -7,6 +7,7 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
+    "invariant": "^2.2.1",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "native-base": "0.5.8",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.7.1",
+    "eslint-plugin-react": "^6.3.0",
     "mocha": "^2.5.3",
     "remote-redux-devtools": "^0.3.3",
     "remote-redux-devtools-on-debugger": "^0.4.6"

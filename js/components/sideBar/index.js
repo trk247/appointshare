@@ -33,9 +33,9 @@ class SideBar extends Component {
                         <Text>Upcoming Appointments</Text>
                     </ListItem>
 
-                    <ListItem button onPress={() => this.navigateTo('favoriteDoctors')} iconLeft style={styles.links} >
+                    <ListItem button onPress={() => this.navigateTo('previousAppointments')} iconLeft style={styles.links} >
                         <Icon name='ios-medkit' />
-                        <Text >Appointments</Text>
+                        <Text >Previous Appointments</Text>
                     </ListItem>
                     
                     <ListItem button onPress={() => this.navigateTo('contact')} iconLeft style={styles.links} >

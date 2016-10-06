@@ -11,30 +11,30 @@ import { popRoute } from './actions/route';
 import { Drawer } from 'native-base';
 import Navigator from 'Navigator';
 import Appointments from './components/appointments/';
-
+// 
 import Settings from './components/settings/';
-import FavoriteDoctors from './components/favoriteDoctors/';
+// import FavoriteDoctors from './components/favoriteDoctors/';
 import PreviousAppointments from './components/previousAppointments/';
 
 import Login from './components/login/';
 import ForgotPassword from './components/forgotPassword/';
 import News from './components/news/';
 import Messages from './components/messages/';
-import Groups from './components/groups/';
-import Overview from './components/overview/';
+ import Groups from './components/groups/';
+ import Overview from './components/overview/';
 import Logout from './components/logout/';
-import SplashPage from './components/splashscreen/';
+ import SplashPage from './components/splashscreen/';
 import Home from './components/home/';
-import SignUp from './components/sign-up/';
-// import Inbox from './components/inbox/';
-import Mail from './components/mail/';
-import Compose from './components/compose/';
-import Lists from './components/lists/';
-import Icons from './components/icons/';
-import ProgressBar from './components/progressbar/';
-import Spinner from './components/spinner/';
-import Contacts from './components/contact/';
-import Calendar from './components/calendar/';
+ import SignUp from './components/sign-up/';
+// // import Inbox from './components/inbox/';
+// import Mail from './components/mail/';
+// import Compose from './components/compose/';
+// import Lists from './components/lists/';
+// import Icons from './components/icons/';
+// import ProgressBar from './components/progressbar/';
+// import Spinner from './components/spinner/';
+import Contact from './components/contact/';
+ import Calendar from './components/calendar/';
 import Form from './components/form/';
 import Modal from './components/modal/';
 import SideBar from './components/sideBar';
@@ -184,7 +184,7 @@ class AppNavigator extends Component {
             case 'spinners':
                 return <Spinner navigator={navigator} />;
             case 'contact':
-                return <Contacts navigator={navigator} />;
+                return <Contact navigator={navigator} />;
             case 'calendar':
                 return <Calendar navigator={navigator} />;
             case 'form':

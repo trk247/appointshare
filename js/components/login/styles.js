@@ -16,7 +16,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        backgroundColor: 'transparent'
+        // backgroundColor: 'transparent'
     },
 
     bg: {
@@ -38,11 +38,11 @@ module.exports = StyleSheet.create({
     },
     containerStyle: {
       color: '#fff',
-      backgroundColor: '#0097d6'
+      // backgroundColor: '#0097d6'
     },
     labelStyle: {
       color: '#fff',
-      backgroundColor: '#0097d6'
+      // backgroundColor: '#0097d6'
     },
     checkBoxStyle: {
       marginBottom: 30, 

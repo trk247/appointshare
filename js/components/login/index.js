@@ -1,13 +1,14 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Image, Platform, AsyncStorage } from 'react-native';
+import { Image, Platform, AsyncStorage, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { pushNewRoute, replaceRoute } from '../../actions/route';
 import { Container, Content, Text, TextInput, InputGroup, Input, Button, List, Icon, View, ListItem } from 'native-base';
   
 import login from './login-theme';
 import styles from './styles';
+import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 var ItemCheckbox = require('react-native-item-checkbox');
 
@@ -22,6 +23,18 @@ class Login extends Component {
             result: '',
             checked: true
         };
+        OneSignal.configure({
+            onIdsAvailable: function(device) {
+                console.log('UserId = ', device.userId);
+                console.log('PushToken = ', device.pushToken);
+            },
+          onNotificationOpened: function(message, data, isActive) {
+              console.log('MESSAGE: ', message);
+              console.log('DATA: ', data);
+              console.log('ISACTIVE: ', isActive);
+          }
+        });
+        
     }
     // componentdidmount - check if result was checked or not
     
@@ -58,22 +71,21 @@ class Login extends Component {
         .then((responseData) => {
           
           // console.log(responseData);
-        
           if (responseData[0].status == 'success') {
             
-            // get session from server
             try {
               AsyncStorage.setItem('@uid:key', responseData[0].id);
               }  catch (error) {
-                console.log(error);// Error saving data
+                console.log(error);
               }
 
-      
-            
               this.replaceRoute('home');
             
           } else {
             this.setState({result: 'Email or Password is incorrect'});
+            // var _navigator; // If applicable, declare a variable for accessing your navigator object to handle payload.
+
+
           }
         })
         .catch((error) => {
@@ -112,6 +124,7 @@ class Login extends Component {
 // source={require('../../../images/ach.png')} 
         return (
             <Container>
+            <ScrollView>
                 <Content style={{backgroundColor: '#fff'}} theme={login} scrollEnabled={this.state.scroll}>
                     <Image source={require('../../../images/glow2.png')} style={styles.container}>
                         <Image style={styles.shadow} source={require('../../../images/logo.png')} >
@@ -157,8 +170,8 @@ class Login extends Component {
                                 </Button>
                                 
                                 <Button rounded block style={{marginBottom: 20}} 
-                                // onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
-                                onPress={() => this.signIn()}
+                                onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}
+                                // onPress={() => this.signIn()}
                                 >
                                     Login
                                 </Button>
@@ -172,6 +185,7 @@ class Login extends Component {
                         </Image>
                     </Image>
                 </Content>
+                </ScrollView>
             </Container>
         )
     }

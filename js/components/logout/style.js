@@ -14,13 +14,13 @@ module.exports = StyleSheet.create({
         borderWidth: 0
     },
     cardHeader: {
-        backgroundColor: 'transparent',
+        // backgroundColor: 'transparent',
         borderBottomWidth: 0,
         paddingBottom: 10,
         height: 65
     },
     cardItem: {
-        backgroundColor: 'transparent',
+        // backgroundColor: 'transparent',
         paddingTop: 5,
         paddingLeft: 55
     },
